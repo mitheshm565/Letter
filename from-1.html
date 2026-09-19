@@ -1,0 +1,88 @@
+<html>
+<head>
+<title>letter</title>
+<style>
+body{
+margin: 0; /* removes default spacing */
+    height: 100vh; /* full screen height */
+    
+    background-image: url("https://i.pinimg.com/1200x/11/fd/dd/11fddd3acf092603ebe6e37c0caadf17.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;        /* auto fit to screen */
+    background-position: center;   /* center image */
+    background-attachment: fixed;  /* optional: smooth effect */
+}
+h1,h4{
+color:white;
+text-align:center;
+padding-top:30px;
+}
+h4{
+font-size:30px
+}
+.label{
+color:white;
+font-size: 20px;
+}
+form{
+text-align:center;
+padding-top: 50px;
+padding:30px;
+
+}
+input{
+    border-radius: 8px;
+    width: px;
+    height: 25px;
+    font-size: px;
+
+}
+.btn{
+    background-color: #f1a9ae;
+    border-radius:20px;
+    padding:10px;
+    width: px;
+    cursor:pointer;
+}
+.cont{
+    border:3px solid #efe9e9;
+     border-radius:10px;
+    width: 450px;
+    padding: 30px;
+    margin: 60px auto;
+    text-align: center;
+}
+.label{
+    height: 10px;
+}
+textarea{
+    width: 250px;      
+    height: 120px;     
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    resize: none;  
+    font-style: Dancing Script;
+}
+
+</style>
+</head>
+<body>
+<h1><u><i><b>                  </b></i></u></h1>
+<div class="cont">
+<form action="https://api.web3forms.com/submit" method="POST">
+<input type="hidden" name="access_key" value="60c346ad-9151-47cb-ba3d-573a8eb4ba3b">
+<lable class="label">name:</lable>
+<input type="text" name="name" placeholder="enter your name..." required><br><br>
+<lable class="label">ph-number:</lable>
+<input type="text" name="name" placeholder="enter your number..." required><br><br>
+<lable class="label">insta_id:</lable>
+<input type="email" placeholder="insta_id......" required><br><br>
+<lable class="label">Your_opinion:</lable>
+<textarea placeholder="enter your opinion..."></textarea><br><br>
+<button class="btn">submit</button>
+</form>
+</div>
+
+</body>
+</html>

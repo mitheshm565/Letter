@@ -1,0 +1,328 @@
+<html>
+<head>
+<title>letter</title>
+
+<link rel="stylesheet"
+href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<style>
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background-image: url("https://i.pinimg.com/1200x/11/fd/dd/11fddd3acf092603ebe6e37c0caadf17.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Paragraph */
+p {
+    color: white;
+}
+
+/* Heading */
+h1 {
+    color: white;
+}
+
+/* Rain container */
+.rain {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Rain drops */
+.drop {
+    position: fixed;
+    bottom: 100%;
+    width: 2px;
+    height: 15px;
+    background: rgba(255,255,255,0.6);
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+/* From button */
+.button-from {
+    text-align: center;
+    border-radius: 16px;
+    margin-left: 50%;
+    height: 40px;
+    width: 100px;
+}
+
+.btn {
+    background-color: rgb(237, 213, 213);
+    border-radius: 50px;
+    color: rgb(235, 55, 55);
+    height: 35px;
+    width: 75px;
+    text-align: center;
+}
+
+.btn1 {
+    text-align: center;
+    margin-top: 600px;
+}
+
+/* Typing cursor */
+.cursor {
+    display: inline-block;
+    width: 2px;
+    height: 20px;
+    background: white;
+    margin-left: 3px;
+
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Mobile */
+@media(max-width:768px) {
+
+    h1 {
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .btn1 {
+        margin-top: 100px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-12 rain">
+
+            <!-- Heading -->
+            <h1 style="text-align:center;">
+                <u><i>For you"💖"</i></u>
+            </h1>
+
+
+            <!-- LETTER WILL COME HERE -->
+            <div id="letter"></div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- From button -->
+<div class="btn1" id="fromButton" style="display:none;">
+
+    <a class="btn" href="from-1.html">
+        from
+    </a>
+
+</div>
+
+
+
+<script>
+
+
+const messages = [
+
+`I don’t know how to put all my feelings into words, but every time I think of you, my heart feels full. There is something magical about you — something that I can never fully explain, but I feel it deeply every moment.`,
+
+`You are the kind of girl who brings light into a room without even trying. The way you smile… it’s like the whole world slows down just so I can watch that moment a little longer. Your eyes is so bueatyfull and your voice has a softness that stays with me long after our conversations end.`,
+
+`Though you are truly beautiful but your kindness, your strength, your gentle nature, and the way you care for others. Every little thing about you inspires me. You make me want to be a better person.`,
+
+`When I talk to you, I forget everything else. When I see you, my day instantly becomes brighter. And when you smile at me… I feel like I’m exactly where I’m meant to be.`,
+
+`You have become the most special part of my life.`,
+
+`I admire you, I respect you, and I care for you more than you realize. Maybe I’m not perfect, but my feelings for you are sincere and honest. I would love to walk beside you, support you, laugh with you, and share every small and big moment with you — not just today, but every day.`,
+
+`You are truly special to me. Always.`,
+
+`------------------🌹👉💖💖❤️❤️👈🌹-------------------`
+
+];
+
+
+
+let messageIndex = 0;
+
+const letter = document.getElementById("letter");
+
+const fromButton = document.getElementById("fromButton");
+
+
+function typeMessage(text, nextMessage) {
+
+    const paragraph = document.createElement("p");
+
+    paragraph.innerHTML = "<i></i>";
+
+    letter.appendChild(paragraph);
+
+    const textContainer = paragraph.querySelector("i");
+
+    const words = text.split(" ");
+
+    let wordIndex = 0;
+
+
+    /* Cursor */
+
+    const cursor = document.createElement("span");
+
+    cursor.className = "cursor";
+
+
+    textContainer.appendChild(cursor);
+
+
+    /* Start typing */
+
+    const typing = setInterval(function() {
+
+        if (wordIndex < words.length) {
+
+            /* Remove cursor temporarily */
+
+            cursor.remove();
+
+
+            /* Add next word */
+
+            textContainer.innerHTML +=
+                words[wordIndex] + " ";
+
+
+            /* Put cursor back */
+
+            textContainer.appendChild(cursor);
+
+
+            wordIndex++;
+
+        }
+
+        else {
+
+            clearInterval(typing);
+
+
+            /* Remove cursor */
+
+            cursor.remove();
+
+
+            /* Wait before next paragraph */
+
+            setTimeout(function() {
+
+                nextMessage();
+
+            }, 1000);
+
+        }
+
+    }, 180);
+
+}
+
+
+
+function showNextMessage() {
+
+    if (messageIndex < messages.length) {
+
+        typeMessage(
+            messages[messageIndex],
+            showNextMessage
+        );
+
+        messageIndex++;
+
+    }
+
+    else {
+
+        /* Letter finished */
+
+        setTimeout(function() {
+
+            fromButton.style.display = "block";
+
+        }, 1000);
+
+    }
+
+}
+
+
+setTimeout(function() {
+
+    showNextMessage();
+
+}, 1000);
+
+
+function createRain() {
+
+    const rain = document.querySelector('.rain');
+
+    for (let i = 0; i < 150; i++) {
+
+        let drop = document.createElement('div');
+
+        drop.classList.add('drop');
+
+        drop.style.right =
+            Math.random() * 100 + 'vw';
+
+        drop.style.animationDuration =
+            (0.5 + Math.random()) + 's';
+
+        drop.style.opacity =
+            Math.random();
+
+        rain.appendChild(drop);
+
+    }
+
+}
+
+createRain();
+
+</script>
+
+</body>
+</html>
